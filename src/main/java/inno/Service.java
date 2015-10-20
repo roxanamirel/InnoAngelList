@@ -70,7 +70,9 @@ public class Service {
 	}
 	@RequestMapping(value = "/startupsByTagLocation/{id}", method = RequestMethod.GET)
 	public void getAllStartups(@PathVariable("id") int id) {
+		
 		String url = "https://api.angel.co/1/tags/"+ id +"/startups?access_token="+token.getAccess_token();
+		
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		ResponseHandler <String> res=new BasicResponseHandler();  
 	    HttpGet getRequest = new HttpGet(url);
@@ -83,5 +85,51 @@ public class Service {
 		}
 		
 		
+	}
+	@RequestMapping(value = "/getLocationTagId/{name}", method = RequestMethod.GET)
+	public void getAll(@PathVariable("name") String name) {
+		
+		String url = "https://api.angel.co/1/search/" +"?query="+ name+ "&type=LocationTag"+"&access_token="+token.getAccess_token();
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		ResponseHandler <String> res=new BasicResponseHandler();  
+	    HttpGet getRequest = new HttpGet(url);
+	    try {
+			String getResponse = httpClient.execute(getRequest,res);
+			System.out.println(getResponse);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	@RequestMapping(value = "getById/{id}", method = RequestMethod.GET)
+	public void getById(@PathVariable("id") int id) {
+		
+		String url = "https://api.angel.co/1/startups/" + id + "?access_token="+token.getAccess_token();
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		ResponseHandler <String> res=new BasicResponseHandler();  
+	    HttpGet getRequest = new HttpGet(url);
+	    try {
+			String getResponse = httpClient.execute(getRequest,res);
+			System.out.println(getResponse);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value = "getAllStartupsInHelsinki", method = RequestMethod.GET)
+	public void getAllStartupsInHelsinki() {
+		int locationId=2320;
+		String url = "https://api.angel.co/1/tags/"+ locationId +"/startups?access_token="+token.getAccess_token()+"&?order=popularity";
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		ResponseHandler <String> res=new BasicResponseHandler();  
+	    HttpGet getRequest = new HttpGet(url);
+	    try {
+			String getResponse = httpClient.execute(getRequest,res);
+			System.out.println(getResponse);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	}
 }
