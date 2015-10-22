@@ -1,42 +1,205 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="http://bootsnipp.com/dist/bootsnipp.min.css?ver=7d23ff901039aef6293954d33d23c066">
+	<title>InnoDigital</title>
+	<meta charset="utf-8">
+	<meta name="description" content="La casa free real state fully responsive html5/css3 home page website template"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/responsive.css">
 
-<title>Hello world page</title>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js"></script>
 </head>
 <body>
-	<h1>${message}</h1>
 
-	<form class="form-horizontal">
-		<fieldset>
-
-			<!-- Form Name -->
-			<legend>Form Name</legend>
-
-			<!-- Select Multiple -->
-			<div class="form-group">
-				<label class="col-md-2 control-label" for="selectmultiple">Select
-					Multiple</label>
-				<div class="col-md-4">
-					<select id="selectmultiple" name="selectmultiple"
-						class="form-control" multiple="multiple">
-						<option value="1">Option one</option>
-						<option value="2">Option two</option>
-					</select> <input id="searchinput" name="searchinput"
-						placeholder="placeholder" class="form-control input-md"
-						type="search">
-					<p class="help-block">help</p>
-					<button id="singlebutton" name="singlebutton"
-						class="btn btn-primary">Button</button>
-				</div>
+	<section class="hero">
+		<header>
+			<div class="wrapper">
+				<a href="#"><img src="${pageContext.request.contextPath}/img/logo.png" class="logo" alt="" titl=""/>InnoDigitalLogo</a>
+				
+				<a href="#" class="hamburger"></a>
+				<nav>
+					<ul>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+					<a href="#" class="login_btn">Login</a>
+				</nav>
 			</div>
-		</fieldset>
-	</form>
+		</header><!--  end header section  -->
 
+			
+	
+
+
+	<section class="search">
+		<div class="wrapper">
+			<form action="#" method="post">
+				<input type="text" id="search" name="search" placeholder="Search startup by name.."  autocomplete="off"/>
+				<input type="submit" id="submit_search" name="submit_search"/>
+			</form>
+			<a href="#" class="advanced_search_icon" id="advanced_search_btn"></a>
+		</div>
+
+		<div class="advanced_search">
+			<div class="wrapper">
+				<span class="arrow"></span>
+				<form action="#" method="post">
+					<div class="search_fields">
+						<input type="text" class="float" id="min_price" name="min_price" placeholder="Investment"  autocomplete="off">
+
+						<hr class="field_sep float"/>
+
+						<input type="text" class="float" id="max_price" name="max_price" placeholder="Location"  autocomplete="off">
+					</div>
+					<input type="text" id="keywords" name="keywords" placeholder="Keywords"  autocomplete="off">
+					<input type="submit" id="submit_search" name="submit_search"/>
+				</form>
+			</div>
+		</div><!--  end advanced search section  -->
+	</section><!--  end search section  -->
+
+</section><!--  end hero section  -->
+	<section class="listings">
+		<div class="wrapper">
+			<ul class="properties_list">
+				<li>
+					<a href="#">
+						<img src="${pageContext.request.contextPath}/img/property_1.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size"></span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="${pageContext.request.contextPath}/img/property_2.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size">)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="${pageContext.request.contextPath}/img/property_3.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size"></span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_1.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size"></span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_2.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size"></span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="${pageContext.request.contextPath}/img/property_3.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size"></span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="${pageContext.request.contextPath}/img/property_1.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size"></span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="${pageContext.request.contextPath}/img/property_2.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size"></span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="${pageContext.request.contextPath}/img/property_3.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">QualityIndex</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>Most important details... <span class="property_size"></span></h2>
+					</div>
+				</li>
+			</ul>
+			<div class="more_listing">
+				<a href="#" class="more_listing_btn">View More Listings</a>
+			</div>
+		</div>
+	</section>	<!--  end listing section  -->
+
+	<footer>
+		<div class="wrapper footer">
+			<ul>
+
+				<li class="about">
+					<p> tellus varius, dictum erat vel, maximus tellus. Sed vitae auctor ipsum</p>
+					<ul>
+						<li><a href="http://facebook.com/pixelhint" class="facebook" target="_blank"></a></li>
+						<li><a href="http://twitter.com/pixelhint" class="twitter" target="_blank"></a></li>
+						<li><a href="http://plus.google.com/+Pixelhint" class="google" target="_blank"></a></li>
+						<li><a href="#" class="skype"></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="copyrights wrapper">
+			Copyright © 2015 All Rights Reserved.
+		</div>
+	</footer><!--  end footer  -->
+	
 </body>
 </html>

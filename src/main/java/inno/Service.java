@@ -50,7 +50,7 @@ public class Service {
 	}
 
 	@RequestMapping(value = "/inno", method = RequestMethod.GET)
-	public void getAccessCode(@RequestParam(value = "code") String code) {
+	public ModelAndView getAccessCode(@RequestParam(value = "code") String code) {
 		User auth_user = new User(code);
 		Gson gson = new Gson();
 		String postUrl = "https://angel.co/api/oauth/token?client_id="
@@ -72,6 +72,9 @@ public class Service {
 
 			e.printStackTrace();
 		}
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
+		return mav;
 
 	}
 
@@ -205,7 +208,7 @@ public class Service {
 			}
 			// TODO deal with this
 			if (startups.size() > 1) {
-				log.warn("There are more startups with the same name!");
+				log.warn("There are more startups with the same name! " + startups.size() );
 			}
 			if (startups.isEmpty()){
 				log.warn("No startup with that name has been found");
