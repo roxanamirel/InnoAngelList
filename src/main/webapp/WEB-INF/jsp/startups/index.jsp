@@ -68,17 +68,24 @@
 				<a href="#"><img
 					src="${pageContext.request.contextPath}/img/logo.png" class="logo"
 					alt="" titl="" />InnoDigitalLogo</a> <a href="#" class="hamburger"></a>
-				<nav>
+			<!-- <nav>
 					<ul>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>
 					</ul>
 					<a href="#" class="login_btn">Login</a>
-				</nav>
+				</nav> -->
 			</div>
 		</header>
 		<!--  end header section  -->
 
+		
+	
+		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+		<br /> <br />
 		<section class="search">
 			<div class="wrapper">
 				<form action="#" method="post">
@@ -93,26 +100,20 @@
 				<div class="wrapper">
 					<span class="arrow"></span>
 					<div class="search_fields">
-						<input type="text" class="float" id="min_price" name="min_price"
+						<input type="text" class="float" id="min_price" name="investment"
 							placeholder="Investment" autocomplete="off">
 
 						<hr class="field_sep float" />
 
 						<input type="text" class="float" id="max_price"
-							onkeypress="searchStartupsByLocation(event)" name="max_price"
+							onkeypress="searchStartupsByLocation(event)" name="location"
 							placeholder="Location" autocomplete="off">
 					</div>
-					<input type="text" id="keywords" name="keywords"
-						placeholder="Keywords" autocomplete="off"> <input
-						type="submit" id="submit_search" name="submit_search" />
+					
 				</div>
 			</div>
 			<!--  end advanced search section  -->
 		</section>
-		<!--  end search section  -->
-		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-		<br /> <br />
 		<section class="search_results_section">
 			<div class="search_results_class" id="search_results">
 				<!-- <jsp:include page="/startupsTable"/> -->
@@ -120,6 +121,8 @@
 		</section>
 
 	</section>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	<!--  end hero section  -->
 	<section class="listings">
 		<div class="wrapper">
@@ -232,7 +235,7 @@
 					</div></li>
 			</ul>
 			<div class="more_listing">
-				<a href="#" class="more_listing_btn">View More Listings</a>
+				<a href="#" class="more_listing_btn">Search again</a>
 			</div>
 		</div>
 	</section>
