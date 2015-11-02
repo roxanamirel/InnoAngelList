@@ -57,7 +57,7 @@
 				alert("Please type in a name");
 			} else {
 				var toSend = '{"name":"' + name + '"}';
-			
+
 				$.ajax({
 					url : '/startupByName',
 					type : 'POST',
@@ -85,13 +85,13 @@
 				<a href="#"><img
 					src="${pageContext.request.contextPath}/img/logo.png" class="logo"
 					alt="" titl="" />InnoDigitalLogo</a> <a href="#" class="hamburger"></a>
-				<!-- <nav>
+				<nav>
 					<ul>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>
 					</ul>
 					<a href="#" class="login_btn">Login</a>
-				</nav> -->
+				</nav>
 			</div>
 		</header>
 		<!--  end header section  -->
@@ -157,9 +157,7 @@
 	<br />
 	<!--  end hero section  -->
 	<section class="listings">
-		<div id="startupListing">
-			
-		</div>
+		<div id="startupListing"></div>
 	</section>
 	<!--  end listing section  -->
 
