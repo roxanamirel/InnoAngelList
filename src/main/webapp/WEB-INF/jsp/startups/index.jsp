@@ -21,44 +21,61 @@
 	src="${pageContext.request.contextPath}/js/main.js"></script>
 
 <script>
-	function searchStartupsByLocation(event) {
+	function searchStartups(event) {
 		if (event.keyCode == 13) {
 			var startupsLocation = document.getElementById('max_price').value;
-			var toSend = '{"location":"' + startupsLocation + '"}';
-			/*
-			$.ajax({
-				url : '/getStartupsByLocation/' + startupsLocation,
-				type : 'GET',
-				dataType : 'html',
-				success : function(response, textStatus, xhr) {
-					alert("ok");
-					$('#search_results').html(response);
-				},
-				error : function(xhr, textStatus, errorThrown) {
-					alert("An error occurred!! " + errorThrown + xhr);
-				}
-			});
-			 */
 
-			$.ajax({
-				url : '/startupsTable',
-				type : 'POST',
-				dataType : 'html',
-				contentType : 'application/json',
-				data : toSend,
-				success : function(response, textStatus, xhr) {
-					alert("ok");
-					$('#search_results').html(response);
-				},
-				error : function(xhr, textStatus, errorThrown) {
-					alert("An error occurred!! " + errorThrown + xhr);
-				}
-			});
+			if (startupsLocation.length <= 0) {
+				alert("Please fill in the location");
+			} else {
+				var qualityIndex = document.getElementById('min_price').value;
+				var toSend = '{"location":"' + startupsLocation
+						+ '", "qualityIndex":"' + qualityIndex + '"}';
+
+				$.ajax({
+					url : '/startupsTable',
+					type : 'POST',
+					dataType : 'html',
+					contentType : 'application/json',
+					data : toSend,
+					success : function(response, textStatus, xhr) {
+						alert("ok");
+						$('#search_results').html(response);
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						alert("An error occurred!! " + errorThrown + xhr);
+					}
+				});
+			}
 		}
+	}
 
+	function searchStartupsByName(event) {
+		if (event.keyCode == 13) {
+			var name = document.getElementById('search').value;
+			if (name.length <= 0) {
+				alert("Please type in a name");
+			} else {
+				var toSend = '{"name":"' + name + '"}';
+			
+				$.ajax({
+					url : '/startupByName',
+					type : 'POST',
+					dataType : 'html',
+					contentType : 'application/json',
+					data : toSend,
+					success : function(response, textStatus, xhr) {
+						alert("ok");
+						$('#search_results').html(response);
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						alert("An error occurred!! " + errorThrown + xhr);
+					}
+				});
+			}
+		}
 	}
 </script>
-
 </head>
 <body>
 
@@ -68,7 +85,7 @@
 				<a href="#"><img
 					src="${pageContext.request.contextPath}/img/logo.png" class="logo"
 					alt="" titl="" />InnoDigitalLogo</a> <a href="#" class="hamburger"></a>
-			<!-- <nav>
+				<!-- <nav>
 					<ul>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>
@@ -79,37 +96,37 @@
 		</header>
 		<!--  end header section  -->
 
-		
-	
+
+
 		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 		<br /> <br />
+
 		<section class="search">
 			<div class="wrapper">
-				<form action="#" method="post">
-					<input type="text" id="search" name="search"
-						placeholder="Search startup by name.." autocomplete="off" /> <input
-						type="submit" id="submit_search" name="submit_search" />
-				</form>
-				<a href="#" class="advanced_search_icon" id="advanced_search_btn"></a>
+				<input type="text" id="search" name="search"
+					placeholder="Search startup by name.."
+					onkeypress="searchStartupsByName(event)" autocomplete="off" /> <a
+					href="#" class="advanced_search_icon" id="advanced_search_btn"></a>
 			</div>
 
 			<div class="advanced_search">
 				<div class="wrapper">
 					<span class="arrow"></span>
 					<div class="search_fields">
-						<input type="text" class="float" id="min_price" name="investment"
-							placeholder="Investment" autocomplete="off">
+						<input type="text" class="float" id="min_price" name="min_price"
+							placeholder="Quality Index" onkeypress="searchStartups(event)"
+							autocomplete="off">
 
 						<hr class="field_sep float" />
 
 						<input type="text" class="float" id="max_price"
-							onkeypress="searchStartupsByLocation(event)" name="location"
+							onkeypress="searchStartups(event)" name="max_price"
 							placeholder="Location" autocomplete="off">
 					</div>
-					
+
 				</div>
 			</div>
 			<!--  end advanced search section  -->
@@ -121,8 +138,24 @@
 		</section>
 
 	</section>
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 	<!--  end hero section  -->
 	<section class="listings">
 		<div class="wrapper">

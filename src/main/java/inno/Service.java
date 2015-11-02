@@ -186,19 +186,26 @@ public class Service {
 		mav.setViewName("startupsTable");
 		return mav;
 	}
-	
-	@RequestMapping(value = "getStartupByName/{name}", method = RequestMethod.GET)
-	public void getStartupByName(@PathVariable("name") String name) {
 
-		String url = "https://api.angel.co/1/search" + "?query=" + name + "&access_token="
-				+ token.getAccess_token();
+	@RequestMapping(value = "/startupByName", method = RequestMethod.POST)
+	public ModelAndView getStartupByName(@RequestBody Object object) {
+
+		String element = object.toString();
+		Gson gsonElement = new Gson();
+
+		String name = gsonElement.fromJson(element, QueryStartup.class)
+				.getName();
 		
+		System.out.println("Getting startups with the name: " + name);
+		
+		String url = "https://api.angel.co/1/search" + "?query=" + name
+				+ "&access_token=" + token.getAccess_token();
+
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		ResponseHandler<String> res = new BasicResponseHandler();
 		HttpGet getRequest = new HttpGet(url);
 		List<Startup> startups = new ArrayList<Startup>();
-		
-		
+
 		try {
 			String getResponse = httpClient.execute(getRequest, res);
 			JsonParser parser = new JsonParser();
@@ -207,38 +214,39 @@ public class Service {
 				Startup startup = gson.fromJson(obj, Startup.class);
 				startups.add(startup);
 			}
-			// TODO deal with this
-			if (startups.size() > 1) {
-				log.warn("There are more startups with the same name! " + startups.size() );
-			}
-			if (startups.isEmpty()){
-				log.warn("No startup with that name has been found");
-			}
-			else{
-				System.out.println("STARTUP FOUND: " + startups.get(0).getName());
-			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("startup_by_name", startups);
+		mav.addObject("total_startups_by_location",
+				startups);
 
-		// TODO add name of view.
-		//mav.setViewName("name-of-view2");
-		//return mav;
-
+		mav.setViewName("startupsTable");
+		return mav;
 	}
-	
+
 	@RequestMapping(value = "/startupsTable", method = RequestMethod.POST)
-	public ModelAndView getStartupsTable(@RequestBody Object location2) {
-		
-		String element = location2.toString();		
+	public ModelAndView getStartupsTable(@RequestBody Object object) {
+
+		String element = object.toString();
 		Gson gsonElement = new Gson();
-		
-		String location = gsonElement.fromJson(element, QueryStartup.class).getLocation();
-		
+
+		String location = gsonElement.fromJson(element, QueryStartup.class)
+				.getLocation();
+
+		int qualityIndex;
+
+		try {
+			qualityIndex = gsonElement.fromJson(element, QueryStartup.class)
+					.getQualityIndex();
+		} catch (Exception e) {
+			qualityIndex = -1;
+		}
+
+		System.out.println("Querying after location = " + location
+				+ " and quality index = " + qualityIndex);
+
 		int locationId = getLocationTagId(location);
 		Startups total_startups = new Startups();
 
@@ -259,15 +267,29 @@ public class Service {
 			}
 			total_startups.getStartups().addAll(startups_perpage.getStartups());
 		}
-		if (total_startups.getStartups().isEmpty()){
+		if (total_startups.getStartups().isEmpty()) {
 			log.warn("No startup with that name has been found");
 		}
-		System.out.println("SIZE:" + total_startups.getStartups().size());
+		System.out.println("# Startups in " + location + " = "
+				+ total_startups.getStartups().size());
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("total_startups_by_location", total_startups.getStartups());
 		mav.setViewName("startupsTable");
+		
+		if (qualityIndex >= 0) {
+			List<Startup> filteredStartups = new ArrayList<Startup>();
+			for (Startup startup : total_startups.getStartups()) {
+				if (startup.getQuality() == qualityIndex) {
+					filteredStartups.add(startup);
+				}
+			}
+			System.out.println("#Filtered startups = "
+					+ filteredStartups.size());
+			mav.addObject("total_startups_by_location", filteredStartups);
+		} else {
+			mav.addObject("total_startups_by_location",
+					total_startups.getStartups());
+		}		
 		return mav;
 	}
-
 }
