@@ -40,7 +40,7 @@
 					data : toSend,
 					success : function(response, textStatus, xhr) {
 						alert("ok");
-						$('#search_results').html(response);
+						$('#startupListing').html(response);
 					},
 					error : function(xhr, textStatus, errorThrown) {
 						alert("An error occurred!! " + errorThrown + xhr);
@@ -66,7 +66,7 @@
 					data : toSend,
 					success : function(response, textStatus, xhr) {
 						alert("ok");
-						$('#search_results').html(response);
+						$('#startupListing').html(response);
 					},
 					error : function(xhr, textStatus, errorThrown) {
 						alert("An error occurred!! " + errorThrown + xhr);
@@ -158,118 +158,8 @@
 	<br />
 	<!--  end hero section  -->
 	<section class="listings">
-		<div class="wrapper">
-			<ul class="properties_list">
-				<li><a href="#"> <img
-						src="${pageContext.request.contextPath}/img/property_1.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size"></span>
-						</h2>
-					</div></li>
-				<li><a href="#"> <img
-						src="${pageContext.request.contextPath}/img/property_2.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size">)</span>
-						</h2>
-					</div></li>
-				<li><a href="#"> <img
-						src="${pageContext.request.contextPath}/img/property_3.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size"></span>
-						</h2>
-					</div></li>
-				<li><a href="#"> <img src="img/property_1.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size"></span>
-						</h2>
-					</div></li>
-				<li><a href="#"> <img src="img/property_2.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size"></span>
-						</h2>
-					</div></li>
-				<li><a href="#"> <img
-						src="${pageContext.request.contextPath}/img/property_3.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size"></span>
-						</h2>
-					</div></li>
-				<li><a href="#"> <img
-						src="${pageContext.request.contextPath}/img/property_1.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size"></span>
-						</h2>
-					</div></li>
-				<li><a href="#"> <img
-						src="${pageContext.request.contextPath}/img/property_2.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size"></span>
-						</h2>
-					</div></li>
-				<li><a href="#"> <img
-						src="${pageContext.request.contextPath}/img/property_3.jpg" alt=""
-						title="" class="property_img" />
-				</a> <span class="price">QualityIndex</span>
-					<div class="property_details">
-						<h1>
-							<a href="#">Fuisque dictum tortor at purus libero</a>
-						</h1>
-						<h2>
-							Most important details... <span class="property_size"></span>
-						</h2>
-					</div></li>
-			</ul>
-			<div class="more_listing">
-				<a href="#" class="more_listing_btn">Search again</a>
-			</div>
+		<div id="startupListing">
+			
 		</div>
 	</section>
 	<!--  end listing section  -->

@@ -17,6 +17,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.log4j.Logger;
+import org.neo4j.cypher.internal.compiler.v2_1.docbuilders.logicalPlanDocBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -222,7 +223,7 @@ public class Service {
 		mav.addObject("total_startups_by_location",
 				startups);
 
-		mav.setViewName("startupsTable");
+		mav.setViewName("startupsList");
 		return mav;
 	}
 
@@ -274,7 +275,7 @@ public class Service {
 				+ total_startups.getStartups().size());
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("startupsTable");
+		mav.setViewName("startupsList");
 		
 		if (qualityIndex >= 0) {
 			List<Startup> filteredStartups = new ArrayList<Startup>();
