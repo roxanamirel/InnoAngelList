@@ -1,37 +1,35 @@
 package inno;
 
+import inno.models.Location;
+import inno.models.QueryStartup;
+import inno.models.Startup;
+import inno.models.Startups;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.w3c.dom.Text;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-
-import inno.User;
-import inno.models.Location;
-import inno.models.Startup;
-import inno.models.Startups;
-import org.apache.log4j.Logger;
 
 @RestController
 public class Service {
@@ -73,6 +71,7 @@ public class Service {
 			e.printStackTrace();
 		}
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("test", "test1");
 		mav.setViewName("index");
 		return mav;
 
@@ -151,9 +150,12 @@ public class Service {
 		}
 	}
 
-	@RequestMapping(value = "getStartupsByLocation/{locationName}", method = RequestMethod.GET)
-	public void getStartupsByLocation(
+	@RequestMapping(value = "/getStartupsByLocation/{locationName}", method = RequestMethod.GET)
+	public ModelAndView getStartupsByLocation(
 			@PathVariable("locationName") String locationName) {
+		
+		System.out.println(locationName);
+		
 		int locationId = getLocationTagId(locationName);
 		Startups total_startups = new Startups();
 
@@ -178,12 +180,11 @@ public class Service {
 			log.warn("No startup with that name has been found");
 		}
 		System.out.println("SIZE:" + total_startups.getStartups().size());
-//		ModelAndView mav = new ModelAndView();
-//		mav.addObject("total_startups_by_location", total_startups);
-
-		// TODO add name of view.
-		//mav.setViewName("name-of-view");
-		//return mav;
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("total_startups_by_location", total_startups.getStartups());
+		mav.setViewName("startupsTable");
+		return mav;
 	}
 	
 	@RequestMapping(value = "getStartupByName/{name}", method = RequestMethod.GET)
@@ -230,6 +231,43 @@ public class Service {
 
 	}
 	
-	
+	@RequestMapping(value = "/startupsTable", method = RequestMethod.POST)
+	public ModelAndView getStartupsTable(@RequestBody Object location2) {
+		
+		String element = location2.toString();		
+		Gson gsonElement = new Gson();
+		
+		String location = gsonElement.fromJson(element, QueryStartup.class).getLocation();
+		
+		int locationId = getLocationTagId(location);
+		Startups total_startups = new Startups();
+
+		for (int pageNo = 1; pageNo < 10; pageNo++) {
+			String url = "https://api.angel.co/1/tags/" + locationId
+					+ "/startups?access_token=" + token.getAccess_token()
+					+ "&?order=popularity&page=" + pageNo;
+			HttpClient httpClient = HttpClientBuilder.create().build();
+			ResponseHandler<String> res = new BasicResponseHandler();
+			HttpGet getRequest = new HttpGet(url);
+			Startups startups_perpage = new Startups();
+			try {
+				String getResponse = httpClient.execute(getRequest, res);
+				startups_perpage = gson.fromJson(getResponse, Startups.class);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			total_startups.getStartups().addAll(startups_perpage.getStartups());
+		}
+		if (total_startups.getStartups().isEmpty()){
+			log.warn("No startup with that name has been found");
+		}
+		System.out.println("SIZE:" + total_startups.getStartups().size());
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("total_startups_by_location", total_startups.getStartups());
+		mav.setViewName("startupsTable");
+		return mav;
+	}
 
 }
