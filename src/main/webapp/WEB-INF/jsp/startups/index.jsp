@@ -31,7 +31,10 @@
 				var qualityIndex = document.getElementById('min_price').value;
 				var toSend = '{"location":"' + startupsLocation
 						+ '", "qualityIndex":"' + qualityIndex + '"}';
-
+				$('#loading-image').bind('ajaxStart', function(){
+						    $(this).show();
+				}).bind('ajaxStop', function(){
+						    $(this).hide();
 				$.ajax({
 					url : '/startupsTable',
 					type : 'POST',
@@ -39,7 +42,7 @@
 					contentType : 'application/json',
 					data : toSend,
 					success : function(response, textStatus, xhr) {
-						alert("ok");
+						
 						$('#startupListing').html(response);
 					},
 					error : function(xhr, textStatus, errorThrown) {
@@ -57,7 +60,10 @@
 				alert("Please type in a name");
 			} else {
 				var toSend = '{"name":"' + name + '"}';
-
+				$('#loading-image').bind('ajaxStart', function(){
+				    $(this).show();
+				}).bind('ajaxStop', function(){
+				    $(this).hide();
 				$.ajax({
 					url : '/startupByName',
 					type : 'POST',
@@ -65,7 +71,7 @@
 					contentType : 'application/json',
 					data : toSend,
 					success : function(response, textStatus, xhr) {
-						alert("ok");
+						
 						$('#startupListing').html(response);
 					},
 					error : function(xhr, textStatus, errorThrown) {
@@ -75,6 +81,7 @@
 			}
 		}
 	}
+	
 </script>
 </head>
 <body>
@@ -86,9 +93,9 @@
 					src="${pageContext.request.contextPath}/img/logo.png" class="logo"
 					alt="" titl="" />InnoDigitalLogo</a> <a href="#" class="hamburger"></a>
 				<nav>
-					<ul>
+					<!-- 	<ul>
 						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="#">Contact</a></li> -->
 					</ul>
 					<a href="#" class="login_btn">Login</a>
 				</nav>
@@ -130,6 +137,7 @@
 			</div>
 			<!--  end advanced search section  -->
 		</section>
+		<br/><br/><br/><br/><br/><br/><br/><br/>
 		<section class="search_results_section">
 			<div class="search_results_class" id="search_results">
 				<!-- <jsp:include page="/startupsTable"/> -->
@@ -137,37 +145,25 @@
 		</section>
 
 	</section>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
 	<!--  end hero section  -->
-	<section class="listings">
-		<div id="startupListing"></div>
-	</section>
-	<!--  end listing section  -->
+
+
+		<section class="listings">
+			<div id="startupListing"></div>
+			 <div id="loading-image">
+			 <img src="${pageContext.request.contextPath}/img/loading.gif" align="middle" height="10%" width="10%" style="display:none">
+			 </div>
+		</section>
+		<!--  end listing section  -->
+       <div id="loading-image"></div>
 
 	<footer>
 		<div class="wrapper footer">
 			<ul>
 
 				<li class="about">
-					<p>tellus varius, dictum erat vel, maximus tellus. Sed vitae
-						auctor ipsum</p>
+					<p>Use this platform to search startups from different datasources like AngelList, 
+					TechCrunch, LinkedIn J, startupgenome</p>
 					<ul>
 						<li><a href="http://facebook.com/pixelhint" class="facebook"
 							target="_blank"></a></li>

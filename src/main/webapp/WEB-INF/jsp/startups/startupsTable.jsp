@@ -16,7 +16,6 @@
 </style>
 </head>
 <body>
-	<p>Vlad Rocks!</p>
 	<div class="search_results_class2" id="search_results">
 		<table>
 			<tr>

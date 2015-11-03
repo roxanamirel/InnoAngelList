@@ -1,25 +1,3 @@
-/*
-
-    Template Author : pixelhint.com
-    Author Email    : contact@pixelhint.com
-    Template Name   : La Casa
-    
-    
-    *****************************************
-    
-    
-    - Fonts
-    - General CSS
-    - Header
-    - Hero
-    - Search
-    - Listings
-    - Footer
-    - Responsive CSS
-    
-
-*/
-
 /*  Fonts  */
 @font-face {
 	font-family: 'lato-bold';
@@ -153,7 +131,7 @@ header nav ul li {
 
 header nav ul li a, header nav .login_btn {
 	text-decoration: none;
-	color: #fff;
+	color: black;
 	font-family: "lato-regular", Helvetica, Arial, sans-serif;
 	font-size: 20px;
 	font-weight: bold;
@@ -165,7 +143,8 @@ header nav .login_btn {
 	margin: 30px 0 0 50px;
 	padding: 10px 30px 11px 30px;
 	border: 2px solid #ffffff;
-	background: transparent;
+	background: #ffffff;
+	color: #1c3655;
 	transition: all .1s linear;
 	-webkit-transition: all .1s linear;
 	-moz-transition: all .1s linear;
@@ -174,13 +153,13 @@ header nav .login_btn {
 
 header nav .login_btn:hover {
 	background: #ffffff;
-	color: #1c3655;
+	color: #259DBB;
 }
 
 /*  Hero Section  */
 .hero {
 	width: 100%;
-	height: 800px;
+	height: 100%;
 	position: relative;
 	background: url('../img/hero.jpg') bottom center;
 	background-size: cover;
@@ -246,15 +225,15 @@ header nav .login_btn:hover {
 }
 
 .search #search:-moz-placeholder {
-	color: green;
+	color: #ffffff;
 }
 
 .search #search::-moz-placeholder {
-	color: green;
+	color: #ffffff;
 }
 
 .search #search:-ms-input-placeholder {
-	color: green;
+	color: #ffffff;
 }
 
 .search #submit_search {
@@ -370,25 +349,25 @@ header nav .login_btn:hover {
 	.search .advanced_search #check_out_date::-webkit-input-placeholder,
 	.search .advanced_search #min_price::-webkit-input-placeholder, .search .advanced_search #max_price::-webkit-input-placeholder,
 	.search .advanced_search #keywords::-webkit-input-placeholder {
-	color: green;
+	color: #ffffff;
 }
 
 .search .advanced_search #check_in_date:-moz-placeholder, .search .advanced_search #check_out_date:-moz-placeholder,
 	.search .advanced_search #min_price:-moz-placeholder, .search .advanced_search #max_price:-moz-placeholder,
 	.search .advanced_search #keywords:-moz-placeholder {
-	color: green;
+	color: #ffffff;
 }
 
 .search .advanced_search #check_in_date::-moz-placeholder, .search .advanced_search #check_out_date::-moz-placeholder,
 	.search .advanced_search #min_price::-moz-placeholder, .search .advanced_search #max_price::-moz-placeholder,
 	.search .advanced_search #keywords::-moz-placeholder {
-	color: green;
+	color: #ffffff;
 }
 
 .search .advanced_search #check_in_date:-ms-input-placeholder, .search .advanced_search #check_out_date:-ms-input-placeholder,
 	.search .advanced_search #min_price:-ms-input-placeholder, .search .advanced_search #max_price:-ms-input-placeholder,
 	.search .advanced_search #keywords:-ms-input-placeholder {
-	color: green;
+	color: #ffffff;
 }
 
 /*  listings section  */
@@ -517,6 +496,7 @@ header nav .login_btn:hover {
 footer {
 	padding-top: 100px;
 	background: #259DBB;
+	height: 5%
 }
 
 footer .footer>ul {

@@ -22,10 +22,10 @@
 					<li><a href="${listValue.company_url }"> <img src="${listValue.logo_url}" alt=""title="" class="property_img" />
 					</a> 
 						<div class="property_details">
-							<h2>QualityIndex: ${listValue.quality}</h2>
-							<h2>
+							<h1>QualityIndex: ${listValue.quality}</h1>
+							<h1>
 								${listValue.name} <span class="property_size"></span>
-							</h2>
+							</h1>
 						</div></li>
 				</c:forEach>
 			</c:if>
