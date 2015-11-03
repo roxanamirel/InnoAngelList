@@ -21,6 +21,12 @@
 	src="${pageContext.request.contextPath}/js/main.js"></script>
 
 <script>
+
+	function setImageVisible(visible) {
+	    var img = document.getElementById('loadingPic');
+	    img.style.visibility = (visible ? 'visible' : 'hidden');
+	}
+
 	function searchStartups(event) {
 		if (event.keyCode == 13) {
 			var startupsLocation = document.getElementById('max_price').value;
@@ -31,10 +37,9 @@
 				var qualityIndex = document.getElementById('min_price').value;
 				var toSend = '{"location":"' + startupsLocation
 						+ '", "qualityIndex":"' + qualityIndex + '"}';
-				$('#loading-image').bind('ajaxStart', function(){
-						    $(this).show();
-				}).bind('ajaxStop', function(){
-						    $(this).hide();
+						
+				setImageVisible(true);
+						
 				$.ajax({
 					url : '/startupsTable',
 					type : 'POST',
@@ -42,7 +47,7 @@
 					contentType : 'application/json',
 					data : toSend,
 					success : function(response, textStatus, xhr) {
-						
+						setImageVisible(false);
 						$('#startupListing').html(response);
 					},
 					error : function(xhr, textStatus, errorThrown) {
@@ -60,10 +65,6 @@
 				alert("Please type in a name");
 			} else {
 				var toSend = '{"name":"' + name + '"}';
-				$('#loading-image').bind('ajaxStart', function(){
-				    $(this).show();
-				}).bind('ajaxStop', function(){
-				    $(this).hide();
 				$.ajax({
 					url : '/startupByName',
 					type : 'POST',
@@ -150,8 +151,9 @@
 
 		<section class="listings">
 			<div id="startupListing"></div>
-			 <div id="loading-image">
-			 <img src="${pageContext.request.contextPath}/img/loading.gif" align="middle" height="10%" width="10%" style="display:none">
+			 <div id="loading-image" align="center">
+			 	<img src="${pageContext.request.contextPath}/img/loading.gif" id="loadingPic" align="middle" height="10%" width="10%"
+			 	style="visibility: hidden;"/>
 			 </div>
 		</section>
 		<!--  end listing section  -->
